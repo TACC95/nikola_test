@@ -1,0 +1,43 @@
+## -*- coding: utf-8 -*-
+ <%inherit file="base.tmpl"/>
+
+ <%block name="extra_head">
+     ${parent.extra_head()}
+     <link rel="stylesheet" href="/assets/css/gallery-index.css">
+ </%block>
+
+ <%block name="content">
+ <article class="gallery-index-page">
+     <h1>${title}</h1>
+     % if text:
+     <div class="gallery-intro">
+         ${text}
+     </div>
+     % endif
+
+     % if folders:
+     <div class="gallery-grid">
+         % for folder in folders:
+         <a href="${folder['url']}" class="gallery-card">
+             % if folder.get('previewimage'):
+             <div class="gallery-card-image">
+                 <img src="${folder['previewimage']}"
+alt="${folder['title']}" loading="lazy">
+             </div>
+             % else:
+             <div class="gallery-card-image gallery-card-placeholder">
+                 <span>📷</span>
+             </div>
+             % endif
+             <div class="gallery-card-body">
+                 <h2>${folder['title']}</h2>
+                 % if folder.get('description'):
+                 <p>${folder['description']}</p>
+                 % endif
+             </div>
+         </a>
+         % endfor
+     </div>
+     % endif
+ </article>
+ </%block>
