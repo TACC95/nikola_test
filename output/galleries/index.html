@@ -3,15 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>galleries | My Nikola Site</title>
+<title>照片展览 | My Nikola Site</title>
 <link href="../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
 <meta name="theme-color" content="#5670d4">
 <meta name="generator" content="Nikola (getnikola.com)">
-<link rel="alternate" type="application/rss+xml" title="RSS" hreflang="zh_cn" href="../rss.xml">
 <link rel="canonical" href="https://tacc95.github.io/galleries/">
 <!--[if lt IE 9]><script src="../assets/js/html5.js"></script><![endif]--><link rel="stylesheet" href="../assets/css/gallery-index.css">
-<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <style type="text/css">
     #gallery_container {
         position: relative;
@@ -20,7 +18,12 @@
         position: absolute;
     }
 </style>
-<link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
+<meta property="og:site_name" content="My Nikola Site">
+<meta property="og:title" content="照片展览">
+<meta property="og:url" content="https://tacc95.github.io/galleries/">
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-07-17T22:26:24+08:00">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">跳到主内容</a>
@@ -54,8 +57,8 @@
 <li class="nav-item">
 <a href="../categories/" class="nav-link">标签</a>
                 </li>
-<li class="nav-item">
-<a href="../rss.xml" class="nav-link">RSS 源</a>
+<li class="nav-item active">
+<a href="." class="nav-link">照片展览 <span class="sr-only">（活跃）</span></a>
 
                 
             </li>
@@ -73,12 +76,33 @@
         
     
 <nav class="breadcrumbs"><ul class="breadcrumb">
-<li class="breadcrumb-item active">galleries</li>
-</ul></nav><h1>galleries</h1>
-            <ul>
-<li><a href="demo/">📂 Nikola Tesla</a></li>
-                <li><a href="%E7%85%A7%E7%89%87%E6%B5%8B%E8%AF%9501/">📂 照片测试</a></li>
-            </ul>
+<li class="breadcrumb-item active">照片展览</li>
+</ul></nav><h1>照片展览</h1>
+    <div class="gallery-description">
+        
+    </div>
+
+    <div class="gallery-grid">
+        
+        <a href="demo/" class="gallery-card">
+            <div class="gallery-card-image">
+                <img src="demo/tesla4_lg.jpg" alt="Nikola Tesla" loading="lazy">
+</div>
+            <div class="gallery-card-body">
+                <h2>Nikola Tesla</h2>
+            </div>
+        </a>
+        
+        <a href="%E7%85%A7%E7%89%87%E6%B5%8B%E8%AF%9501/" class="gallery-card">
+            <div class="gallery-card-image">
+                <img src="%E7%85%A7%E7%89%87%E6%B5%8B%E8%AF%9501/IMG_4226_F.jpg" alt="照片测试" loading="lazy">
+</div>
+            <div class="gallery-card-body">
+                <h2>照片测试</h2>
+            </div>
+        </a>
+    </div>
+
 <div id="gallery_container"></div>
 
         <!--End of body content-->
@@ -97,6 +121,7 @@ var jsonContent = [];
 var thumbnailSize = 180;
 renderGallery(jsonContent, thumbnailSize);
 window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnailSize)});
+
 </script><script>
     baguetteBox.run('div#content', {
         ignoreClass: 'islink',

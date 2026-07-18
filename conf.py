@@ -144,7 +144,7 @@ NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         ("/archive.html", "文章归档"),
         ("/categories/", "标签"),
-        ("/rss.xml", "RSS 源"),
+        ("/galleries/", "照片展览"),
     ),
 }
 
@@ -791,7 +791,7 @@ GITHUB_COMMIT_SOURCE = True
 
 # Use a thumbnail (defined by ".. previewimage:" in the gallery's index) in
 # list of galleries for each gallery
-GALLERIES_USE_THUMBNAIL = False
+GALLERIES_USE_THUMBNAIL = True
 
 # Image to use as thumbnail for those galleries that don't have one
 # None: show a grey square
@@ -1184,7 +1184,7 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 
 # By default, Nikola generates RSS files for the website and for tags, and
 # links to it.  Set this to False to disable everything RSS-related.
-# GENERATE_RSS = True
+GENERATE_RSS = False
 
 # By default, Nikola does not generates Atom files for indexes and links to
 # them. Generate Atom for tags by setting TAG_PAGES_ARE_INDEXES to True.

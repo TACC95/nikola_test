@@ -1,4 +1,6 @@
 .. title: Nikola Tesla
+.. previewimage: tesla4_lg.jpg
+.. music: /assets/audio/demo/Efdemin - Black Sun.mp3, /assets/audio/demo/Efdemin - Wrong Movements(Left).mp3
 
 Some public domain pictures of Nikola Tesla
 (copied from `here <https://kerryr.net/pioneers/gallery/tesla.htm>`_)
