@@ -4,10 +4,12 @@
      padding: 2rem 1rem;
  }
 
- .gallery-intro {
+ .gallery-intro,
+ .gallery-description {
      color: #666;
      margin-bottom: 2rem;
      font-size: 1.1rem;
+     line-height: 1.6;
  }
 
  .gallery-grid {
