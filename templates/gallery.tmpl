@@ -223,7 +223,12 @@ ${parent.extra_head()}
     for f in music_files:
         name = f.split('/')[-1]
         track_title = name.rsplit('.', 1)[0] if '.' in name else name
-        encoded_src = quote(f, safe='/')
+        # 把绝对路径 /assets/... 转为相对路径 ../../assets/...，兼容子目录部署
+        if f.startswith('/'):
+            relative_src = '../../' + f.lstrip('/')
+        else:
+            relative_src = f
+        encoded_src = quote(relative_src, safe='/')
         playlist.append({'src': encoded_src, 'title': track_title})
 %>
 <div id="gallery-player">
@@ -351,11 +356,13 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
         nextBtn.click();
     });
 
-    seek.addEventListener('input', function() {
+    function seekAudio() {
         if (audio.duration) {
             audio.currentTime = (seek.value / 100) * audio.duration;
         }
-    });
+    }
+    seek.addEventListener('input', seekAudio);
+    seek.addEventListener('change', seekAudio);
 
     volume.addEventListener('input', function() {
         audio.volume = volume.value / 100;
