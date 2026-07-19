@@ -160,7 +160,7 @@
 (copied from here)">
 <meta property="og:image" content="https://tacc95.github.io/galleries/demo/tesla4_lg.jpg">
 <meta property="og:type" content="article">
-<meta property="article:published_time" content="2026-07-18T21:40:13+08:00">
+<meta property="article:published_time" content="2026-07-19T20:24:19+08:00">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">跳到主内容</a>
@@ -273,7 +273,7 @@
     <audio id="player-audio" preload="metadata"></audio>
 </div>
 <script>
-    window.galleryPlaylist = [{"src": "../../assets/audio/demo/Efdemin%20-%20Black%20Sun.mp3", "title": "Efdemin - Black Sun"}, {"src": "../../assets/audio/demo/Efdemin%20-%20Wrong%20Movements%28Left%29.mp3", "title": "Efdemin - Wrong Movements(Left)"}];
+    window.galleryPlaylist = [{"src": "../../assets/audio/galleries/demo/Efdemin%20-%20Black%20Sun.mp3", "title": "Efdemin - Black Sun"}, {"src": "../../assets/audio/galleries/demo/Efdemin%20-%20Wrong%20Movements%28Left%29.mp3", "title": "Efdemin - Wrong Movements(Left)"}];
 </script><!--End of body content--><footer id="footer">
             Contents © 2026         <a href="mailto:n.tesla@example.com">Nikola Tesla</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
             
@@ -323,7 +323,7 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
         durationEl.textContent = '0:00';
         seek.value = 0;
         currentEl.textContent = '0:00';
-        playBtn.textContent = '▶';
+        playBtn.textContent = '▶️';
     }
 
     playBtn.addEventListener('click', function() {
@@ -332,10 +332,10 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
             audio.play().catch(function(e) {
                 console.log('播放失败，请检查音频文件是否存在:', e);
             });
-            playBtn.textContent = '| |';
+            playBtn.textContent = '⏸';
         } else {
             audio.pause();
-            playBtn.textContent = '▶';
+            playBtn.textContent = '▶️';
         }
     });
 
