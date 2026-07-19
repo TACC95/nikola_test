@@ -270,7 +270,7 @@
         <span>🔊</span>
         <input type="range" id="player-volume" value="80" min="0" max="100">
 </div>
-    <audio id="player-audio" preload="metadata"></audio>
+    <audio id="player-audio" preload="auto"></audio>
 </div>
 <script>
     window.galleryPlaylist = [{"src": "../../assets/audio/galleries/demo/Efdemin%20-%20Black%20Sun.mp3", "title": "Efdemin - Black Sun"}, {"src": "../../assets/audio/galleries/demo/Efdemin%20-%20Wrong%20Movements%28Left%29.mp3", "title": "Efdemin - Wrong Movements(Left)"}];
@@ -307,6 +307,8 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
     const titleEl = document.getElementById('player-title');
 
     let currentIndex = 0;
+    let playPromise = null;
+    let isLoading = false;
 
     function formatTime(t) {
         if (!t || isNaN(t)) return '0:00';
@@ -315,27 +317,65 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
         return m + ':' + s;
     }
 
+    function updateButton() {
+        if (isLoading) {
+            playBtn.textContent = '...';
+            playBtn.disabled = true;
+        } else {
+            playBtn.textContent = audio.paused ? '▶️' : '⏸';
+            playBtn.disabled = false;
+        }
+    }
+
     function loadTrack(index) {
         currentIndex = index;
         const track = playlist[currentIndex];
+        // 取消正在进行的播放请求，避免竞态
+        if (playPromise !== null) {
+            playPromise.then(function() {
+                audio.pause();
+            }).catch(function() {});
+        } else {
+            audio.pause();
+        }
         audio.src = track.src;
         titleEl.textContent = track.title;
         durationEl.textContent = '0:00';
         seek.value = 0;
         currentEl.textContent = '0:00';
-        playBtn.textContent = '▶️';
+        updateButton();
+    }
+
+    function doPlay() {
+        if (isLoading) return;
+        isLoading = true;
+        updateButton();
+        playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(function() {
+                isLoading = false;
+                updateButton();
+            }).catch(function(e) {
+                isLoading = false;
+                updateButton();
+                console.log('播放失败:', e);
+            });
+        } else {
+            isLoading = false;
+            updateButton();
+        }
     }
 
     playBtn.addEventListener('click', function() {
+        if (isLoading) return;
+        if (!audio.src) {
+            loadTrack(0);
+        }
         if (audio.paused) {
-            if (!audio.src) loadTrack(0);
-            audio.play().catch(function(e) {
-                console.log('播放失败，请检查音频文件是否存在:', e);
-            });
-            playBtn.textContent = '⏸';
+            doPlay();
         } else {
             audio.pause();
-            playBtn.textContent = '▶️';
+            updateButton();
         }
     });
 
@@ -343,16 +383,14 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
         let index = currentIndex - 1;
         if (index < 0) index = playlist.length - 1;
         loadTrack(index);
-        audio.play().catch(function() {});
-        playBtn.textContent = '⏸';
+        doPlay();
     });
 
     nextBtn.addEventListener('click', function() {
         let index = currentIndex + 1;
         if (index >= playlist.length) index = 0;
         loadTrack(index);
-        audio.play().catch(function() {});
-        playBtn.textContent = '⏸';
+        doPlay();
     });
 
     audio.addEventListener('timeupdate', function() {
@@ -367,7 +405,10 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
     });
 
     audio.addEventListener('ended', function() {
-        nextBtn.click();
+        let index = currentIndex + 1;
+        if (index >= playlist.length) index = 0;
+        loadTrack(index);
+        doPlay();
     });
 
     function seekAudio() {
