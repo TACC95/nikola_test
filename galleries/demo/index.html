@@ -273,7 +273,7 @@
     <audio id="player-audio" preload="metadata"></audio>
 </div>
 <script>
-    window.galleryPlaylist = [{"src": "/assets/audio/demo/Efdemin%20-%20Black%20Sun.mp3", "title": "Efdemin - Black Sun"}, {"src": "/assets/audio/demo/Efdemin%20-%20Wrong%20Movements%28Left%29.mp3", "title": "Efdemin - Wrong Movements(Left)"}];
+    window.galleryPlaylist = [{"src": "../../assets/audio/demo/Efdemin%20-%20Black%20Sun.mp3", "title": "Efdemin - Black Sun"}, {"src": "../../assets/audio/demo/Efdemin%20-%20Wrong%20Movements%28Left%29.mp3", "title": "Efdemin - Wrong Movements(Left)"}];
 </script><!--End of body content--><footer id="footer">
             Contents © 2026         <a href="mailto:n.tesla@example.com">Nikola Tesla</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
             
@@ -370,11 +370,13 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
         nextBtn.click();
     });
 
-    seek.addEventListener('input', function() {
+    function seekAudio() {
         if (audio.duration) {
             audio.currentTime = (seek.value / 100) * audio.duration;
         }
-    });
+    }
+    seek.addEventListener('input', seekAudio);
+    seek.addEventListener('change', seekAudio);
 
     volume.addEventListener('input', function() {
         audio.volume = volume.value / 100;
