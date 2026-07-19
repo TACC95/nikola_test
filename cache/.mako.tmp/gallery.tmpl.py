@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1784463515.215916
+_modified_time = 1784465275.89043
 _enable_loop = True
 _template_filename = 'templates/gallery.tmpl'
 _template_uri = 'gallery.tmpl'
@@ -40,33 +40,33 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        post = context.get('post', UNDEFINED)
-        folders = context.get('folders', UNDEFINED)
-        thumbnail_size = context.get('thumbnail_size', UNDEFINED)
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
-        comments = _mako_get_namespace(context, 'comments')
-        photo_array_json = context.get('photo_array_json', UNDEFINED)
         title = context.get('title', UNDEFINED)
+        parent = context.get('parent', UNDEFINED)
+        def extra_head():
+            return render_extra_head(context._locals(__M_locals))
+        post_helper = _mako_get_namespace(context, 'post_helper')
         def extra_js():
             return render_extra_js(context._locals(__M_locals))
         len = context.get('len', UNDEFINED)
-        photo_array = context.get('photo_array', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
-        permalink = context.get('permalink', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        crumbs = context.get('crumbs', UNDEFINED)
-        enable_comments = context.get('enable_comments', UNDEFINED)
-        ui = _mako_get_namespace(context, 'ui')
-        def sourcelink():
-            return render_sourcelink(context._locals(__M_locals))
-        def extra_head():
-            return render_extra_head(context._locals(__M_locals))
-        lang = context.get('lang', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
+        photo_array_json = context.get('photo_array_json', UNDEFINED)
+        thumbnail_size = context.get('thumbnail_size', UNDEFINED)
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        post_helper = _mako_get_namespace(context, 'post_helper')
+        photo_array = context.get('photo_array', UNDEFINED)
+        permalink = context.get('permalink', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        crumbs = context.get('crumbs', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
+        def sourcelink():
+            return render_sourcelink(context._locals(__M_locals))
         gallery_path = context.get('gallery_path', UNDEFINED)
+        enable_comments = context.get('enable_comments', UNDEFINED)
+        post = context.get('post', UNDEFINED)
+        folders = context.get('folders', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
+        _link = context.get('_link', UNDEFINED)
+        ui = _mako_get_namespace(context, 'ui')
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer('\n')
@@ -113,17 +113,17 @@ def render_sourcelink(context,**pageargs):
 def render_extra_head(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        parent = context.get('parent', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        lang = context.get('lang', UNDEFINED)
+        post = context.get('post', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
+        photo_array = context.get('photo_array', UNDEFINED)
+        gallery_path = context.get('gallery_path', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
         def extra_head():
             return render_extra_head(context)
-        post = context.get('post', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        lang = context.get('lang', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
         post_helper = _mako_get_namespace(context, 'post_helper')
-        gallery_path = context.get('gallery_path', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        photo_array = context.get('photo_array', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         __M_writer(str(parent.extra_head()))
@@ -155,19 +155,19 @@ def render_extra_head(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        ui = _mako_get_namespace(context, 'ui')
-        permalink = context.get('permalink', UNDEFINED)
-        post = context.get('post', UNDEFINED)
-        comments = _mako_get_namespace(context, 'comments')
-        site_has_comments = context.get('site_has_comments', UNDEFINED)
+        len = context.get('len', UNDEFINED)
         folders = context.get('folders', UNDEFINED)
+        crumbs = context.get('crumbs', UNDEFINED)
+        post = context.get('post', UNDEFINED)
         title = context.get('title', UNDEFINED)
+        site_has_comments = context.get('site_has_comments', UNDEFINED)
         def content():
             return render_content(context)
-        crumbs = context.get('crumbs', UNDEFINED)
-        len = context.get('len', UNDEFINED)
         photo_array = context.get('photo_array', UNDEFINED)
+        permalink = context.get('permalink', UNDEFINED)
+        comments = _mako_get_namespace(context, 'comments')
         enable_comments = context.get('enable_comments', UNDEFINED)
+        ui = _mako_get_namespace(context, 'ui')
         __M_writer = context.writer()
         __M_writer('\n    ')
         __M_writer(str(ui.breadcrumbs(crumbs)))
@@ -256,10 +256,10 @@ def render_extra_js(context,**pageargs):
     try:
         photo_array = context.get('photo_array', UNDEFINED)
         post = context.get('post', UNDEFINED)
+        photo_array_json = context.get('photo_array_json', UNDEFINED)
         thumbnail_size = context.get('thumbnail_size', UNDEFINED)
         def extra_js():
             return render_extra_js(context)
-        photo_array_json = context.get('photo_array_json', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<script src="/assets/js/justified-layout.min.js"></script>\n<script src="/assets/js/gallery.min.js"></script>\n<script>\nvar jsonContent = ')
         __M_writer(str(photo_array_json))
@@ -267,7 +267,7 @@ def render_extra_js(context,**pageargs):
         __M_writer(str(thumbnail_size))
         __M_writer(";\nrenderGallery(jsonContent, thumbnailSize);\nwindow.addEventListener('resize', function(){renderGallery(jsonContent, thumbnailSize)});\n\n")
         if photo_array and post and post.meta('music'):
-            __M_writer("// 底部音乐播放器（仅在单相册页且配置了 music 元数据时生效）\n(function() {\n    const playlist = window.galleryPlaylist;\n    if (!playlist || !playlist.length) return;\n\n    document.body.classList.add('has-gallery-player');\n\n    const audio = document.getElementById('player-audio');\n    const playBtn = document.getElementById('player-play');\n    const prevBtn = document.getElementById('player-prev');\n    const nextBtn = document.getElementById('player-next');\n    const seek = document.getElementById('player-seek');\n    const volume = document.getElementById('player-volume');\n    const currentEl = document.getElementById('player-current');\n    const durationEl = document.getElementById('player-duration');\n    const titleEl = document.getElementById('player-title');\n\n    let currentIndex = 0;\n\n    function formatTime(t) {\n        if (!t || isNaN(t)) return '0:00';\n        const m = Math.floor(t / 60);\n        const s = Math.floor(t % 60).toString().padStart(2, '0');\n        return m + ':' + s;\n    }\n\n    function loadTrack(index) {\n        currentIndex = index;\n        const track = playlist[currentIndex];\n        audio.src = track.src;\n        titleEl.textContent = track.title;\n        durationEl.textContent = '0:00';\n        seek.value = 0;\n        currentEl.textContent = '0:00';\n        playBtn.textContent = '▶';\n    }\n\n    playBtn.addEventListener('click', function() {\n        if (audio.paused) {\n            if (!audio.src) loadTrack(0);\n            audio.play().catch(function(e) {\n                console.log('播放失败，请检查音频文件是否存在:', e);\n            });\n            playBtn.textContent = '| |';\n        } else {\n            audio.pause();\n            playBtn.textContent = '▶';\n        }\n    });\n\n    prevBtn.addEventListener('click', function() {\n        let index = currentIndex - 1;\n        if (index < 0) index = playlist.length - 1;\n        loadTrack(index);\n        audio.play().catch(function() {});\n        playBtn.textContent = '⏸';\n    });\n\n    nextBtn.addEventListener('click', function() {\n        let index = currentIndex + 1;\n        if (index >= playlist.length) index = 0;\n        loadTrack(index);\n        audio.play().catch(function() {});\n        playBtn.textContent = '⏸';\n    });\n\n    audio.addEventListener('timeupdate', function() {\n        if (audio.duration) {\n            seek.value = (audio.currentTime / audio.duration) * 100;\n            currentEl.textContent = formatTime(audio.currentTime);\n        }\n    });\n\n    audio.addEventListener('loadedmetadata', function() {\n        durationEl.textContent = formatTime(audio.duration);\n    });\n\n    audio.addEventListener('ended', function() {\n        nextBtn.click();\n    });\n\n    function seekAudio() {\n        if (audio.duration) {\n            audio.currentTime = (seek.value / 100) * audio.duration;\n        }\n    }\n    seek.addEventListener('input', seekAudio);\n    seek.addEventListener('change', seekAudio);\n\n    volume.addEventListener('input', function() {\n        audio.volume = volume.value / 100;\n    });\n\n    audio.volume = volume.value / 100;\n    loadTrack(0);\n})();\n")
+            __M_writer("// 底部音乐播放器（仅在单相册页且配置了 music 元数据时生效）\n(function() {\n    const playlist = window.galleryPlaylist;\n    if (!playlist || !playlist.length) return;\n\n    document.body.classList.add('has-gallery-player');\n\n    const audio = document.getElementById('player-audio');\n    const playBtn = document.getElementById('player-play');\n    const prevBtn = document.getElementById('player-prev');\n    const nextBtn = document.getElementById('player-next');\n    const seek = document.getElementById('player-seek');\n    const volume = document.getElementById('player-volume');\n    const currentEl = document.getElementById('player-current');\n    const durationEl = document.getElementById('player-duration');\n    const titleEl = document.getElementById('player-title');\n\n    let currentIndex = 0;\n\n    function formatTime(t) {\n        if (!t || isNaN(t)) return '0:00';\n        const m = Math.floor(t / 60);\n        const s = Math.floor(t % 60).toString().padStart(2, '0');\n        return m + ':' + s;\n    }\n\n    function loadTrack(index) {\n        currentIndex = index;\n        const track = playlist[currentIndex];\n        audio.src = track.src;\n        titleEl.textContent = track.title;\n        durationEl.textContent = '0:00';\n        seek.value = 0;\n        currentEl.textContent = '0:00';\n        playBtn.textContent = '▶️';\n    }\n\n    playBtn.addEventListener('click', function() {\n        if (audio.paused) {\n            if (!audio.src) loadTrack(0);\n            audio.play().catch(function(e) {\n                console.log('播放失败，请检查音频文件是否存在:', e);\n            });\n            playBtn.textContent = '⏸';\n        } else {\n            audio.pause();\n            playBtn.textContent = '▶️';\n        }\n    });\n\n    prevBtn.addEventListener('click', function() {\n        let index = currentIndex - 1;\n        if (index < 0) index = playlist.length - 1;\n        loadTrack(index);\n        audio.play().catch(function() {});\n        playBtn.textContent = '⏸';\n    });\n\n    nextBtn.addEventListener('click', function() {\n        let index = currentIndex + 1;\n        if (index >= playlist.length) index = 0;\n        loadTrack(index);\n        audio.play().catch(function() {});\n        playBtn.textContent = '⏸';\n    });\n\n    audio.addEventListener('timeupdate', function() {\n        if (audio.duration) {\n            seek.value = (audio.currentTime / audio.duration) * 100;\n            currentEl.textContent = formatTime(audio.currentTime);\n        }\n    });\n\n    audio.addEventListener('loadedmetadata', function() {\n        durationEl.textContent = formatTime(audio.duration);\n    });\n\n    audio.addEventListener('ended', function() {\n        nextBtn.click();\n    });\n\n    function seekAudio() {\n        if (audio.duration) {\n            audio.currentTime = (seek.value / 100) * audio.duration;\n        }\n    }\n    seek.addEventListener('input', seekAudio);\n    seek.addEventListener('change', seekAudio);\n\n    volume.addEventListener('input', function() {\n        audio.volume = volume.value / 100;\n    });\n\n    audio.volume = volume.value / 100;\n    loadTrack(0);\n})();\n")
         __M_writer('</script>\n')
         return ''
     finally:

@@ -309,7 +309,7 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
         durationEl.textContent = '0:00';
         seek.value = 0;
         currentEl.textContent = '0:00';
-        playBtn.textContent = '▶';
+        playBtn.textContent = '▶️';
     }
 
     playBtn.addEventListener('click', function() {
@@ -318,10 +318,10 @@ window.addEventListener('resize', function(){renderGallery(jsonContent, thumbnai
             audio.play().catch(function(e) {
                 console.log('播放失败，请检查音频文件是否存在:', e);
             });
-            playBtn.textContent = '| |';
+            playBtn.textContent = '⏸';
         } else {
             audio.pause();
-            playBtn.textContent = '▶';
+            playBtn.textContent = '▶️';
         }
     });
 
