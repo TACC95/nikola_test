@@ -1,6 +1,6 @@
 .. title: 福田-夜景拍摄
 .. previewimage: IMG_4504.JPG
-.. music: /assets/audio/福田-夜景拍摄/Fluxion - Multidirectional II.mp3, /assets/audio/福田-夜景拍摄/Fluxion - Variant (CD Version).mp3, /assets/audio/福田-夜景拍摄/Fluxion - Contact.mp3,
+.. music: /assets/audio/galleries/福田-夜景拍摄/Fluxion - Multidirectional II.mp3, /assets/audio/galleries/福田-夜景拍摄/Fluxion - Variant (CD Version).mp3, /assets/audio/galleries/福田-夜景拍摄/Fluxion - Contact.mp3,
 
 
 福田-益田的夜景拍摄，怀念那个寂静的街道，以及栈道打下的灯光，令人感到温馨，可惜时光已一去不复返。
